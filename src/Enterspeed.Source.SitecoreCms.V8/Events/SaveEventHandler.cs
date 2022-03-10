@@ -22,7 +22,7 @@ using Sitecore.Publishing;
 using Sitecore.Publishing.Pipelines.PublishItem;
 using Version = Sitecore.Data.Version;
 
-namespace Enterspeed.Source.SitecoreCms.V9.Events
+namespace Enterspeed.Source.SitecoreCms.V8.Events
 {
     public class SaveEventHandler
     {

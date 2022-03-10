@@ -126,7 +126,7 @@ namespace Enterspeed.Source.SitecoreCms.V8.Services
                                     LanguageEmbedding = LanguageEmbedding.Never
                                 });
                             }
-                            if (siteContext.Properties["scheme"] == null)
+                            if (!startPathUrl.StartsWith("http", StringComparison.OrdinalIgnoreCase))
                             {
                                 startPathUrl = "http" + startPathUrl;
                             }

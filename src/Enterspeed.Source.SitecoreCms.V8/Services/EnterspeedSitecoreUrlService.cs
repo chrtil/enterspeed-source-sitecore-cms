@@ -5,6 +5,7 @@ using Sitecore.Globalization;
 using Sitecore.Links;
 using Sitecore.Resources.Media;
 using Sitecore.Sites;
+using System;
 
 namespace Enterspeed.Source.SitecoreCms.V8.Services
 {
@@ -56,7 +57,11 @@ namespace Enterspeed.Source.SitecoreCms.V8.Services
             {
 
                 itemUrl = LinkManager.GetItemUrl(item, urlBuilderOptions);
-                itemUrl = urlBuilderOptions.Site.Properties["scheme"] ?? "http" + LinkManager.GetItemUrl(item, urlBuilderOptions);
+                if (!itemUrl.StartsWith("http", StringComparison.OrdinalIgnoreCase))
+                {
+                    itemUrl = "http" + itemUrl;
+                }
+
                 if (!string.IsNullOrEmpty(siteInfo.BaseUrl))
                 {
                     itemUrl = siteInfo.BaseUrl + itemUrl.Replace(siteInfo.StartPathUrl,"/");
