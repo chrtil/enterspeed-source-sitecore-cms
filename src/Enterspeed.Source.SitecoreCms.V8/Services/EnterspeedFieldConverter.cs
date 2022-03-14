@@ -4,10 +4,13 @@ using System.Linq;
 using Enterspeed.Source.Sdk.Api.Models.Properties;
 using Enterspeed.Source.SitecoreCms.V8.Extensions;
 using Enterspeed.Source.SitecoreCms.V8.Models.Configuration;
+using Enterspeed.Source.SitecoreCms.V8.Pipelines.EnterspeedField.Models;
 using Enterspeed.Source.SitecoreCms.V8.Services.DataProperties;
 using Sitecore.Collections;
 using Sitecore.Data.Fields;
 using Sitecore.Data.Items;
+using Sitecore.Diagnostics;
+using Sitecore.Pipelines;
 
 namespace Enterspeed.Source.SitecoreCms.V8.Services
 {
@@ -66,6 +69,12 @@ namespace Enterspeed.Source.SitecoreCms.V8.Services
                 IEnterspeedFieldValueConverter converter = fieldValueConverters.FirstOrDefault(x => x.CanConvert(field));
 
                 var value = converter?.Convert(item, field, siteInfo, fieldValueConverters, configuration);
+
+                var pipelineArgs = new EnterspeedFieldPipelineArgs();
+                pipelineArgs.Value = value.ToString();
+                CorePipeline.Run("enterspeedFieldPipeline", pipelineArgs);
+                Log.Info(pipelineArgs.Value, this);
+
                 if (value == null)
                 {
                     continue;

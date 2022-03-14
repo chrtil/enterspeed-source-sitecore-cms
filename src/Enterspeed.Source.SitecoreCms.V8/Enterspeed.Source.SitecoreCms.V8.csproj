@@ -149,6 +149,8 @@
     <Compile Include="Models\SitecoreContentEntity.cs" />
     <Compile Include="Models\SitecoreDictionaryEntity.cs" />
     <Compile Include="Models\SitecoreRenderingEntity.cs" />
+    <Compile Include="Pipelines\EnterspeedField\Models\EnterspeedFieldPipelineArgs.cs" />
+    <Compile Include="Pipelines\EnterspeedField\SimpleFieldPipeline.cs" />
     <Compile Include="Pipelines\Initialize\InitializeEnterspeed.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Providers\EnterspeedSitecoreConfigurationProvider.cs" />
